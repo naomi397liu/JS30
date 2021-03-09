@@ -64,13 +64,22 @@
     const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); 
     // if there's no data-key that corresponds to our event's keyCode then we haven't selected
     // anything and therefore have no audio, so we leave the function
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); //selects the element
+    //in the class key whose data-key corresponds to the key code of the key we clicked which is a div
     if (!audio) return;
     // Otherwise, we play the audio that corresponds to the keyCode/data-key
     audio.currentTime = 0; //everytime the event occurs(key clicked), 
     // the function starts the audio from time = 0, allows audio to play from the start again without
     // previous audio finishing all the way through first.
     audio.play()
+    key.classList.add('playing') //adds css class playing to the key
+    //reads in a live DOM token and adds it to the selector: key
   });
+
+  const keys = document.querySelectorAll('.key') //array of all the key options
+  //cannot listen on all key events
+  keys.forEach(key => key.addEventListener('trasitionend', removeTransition)) //add listener for when transition ends
+  
 </script>
 
 
