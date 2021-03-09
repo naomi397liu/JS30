@@ -58,7 +58,19 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  window.addEventListener('keydown', function(e){
+    // we query select the audio element whose data-key corresponds to the key code of the
+    // keyboard key we clicked. e is the event or what we are listening for, keydown.
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); 
+    // if there's no data-key that corresponds to our event's keyCode then we haven't selected
+    // anything and therefore have no audio, so we leave the function
+    if (!audio) return;
+    // Otherwise, we play the audio that corresponds to the keyCode/data-key
+    audio.currentTime = 0; //everytime the event occurs(key clicked), 
+    // the function starts the audio from time = 0, allows audio to play from the start again without
+    // previous audio finishing all the way through first.
+    audio.play()
+  });
 </script>
 
 
